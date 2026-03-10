@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservations — Flicks &amp; Licks</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { charcoal:'#0D0D0D', espresso:'#1A1208', gold:'#C9A84C', cream:'#F5EDD6', offwhite:'#F0EBE1', warmgrey:'#8A8070', ember:'#C0392B' },
+        fontFamily: { playfair:['"Playfair Display"','serif'], cormorant:['"Cormorant Garamond"','serif'], dm:['"DM Sans"','sans-serif'] }
+      }}
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/custom.css" />
+
+  <style>
+    /* Date & select input custom styling */
+    input[type="date"], input[type="time"], select.form-input {
+      color-scheme: dark;
+    }
+    select.form-input option { background: #0D0D0D; color: #F0EBE1; }
+    .candle-container {
+      position: absolute; bottom: 40px; right: 10%;
+      display: flex; gap: 32px; opacity: .6;
+    }
+    .candle {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .candle-body {
+      width: 10px; height: 48px;
+      background: linear-gradient(to bottom, #F5EDD6, #C9A84C55);
+      border-radius: 2px;
+    }
+    .flame {
+      width: 8px; height: 14px;
+      background: radial-gradient(ellipse at 50% 80%, #fff 0%, #C9A84C 40%, #C0392B 80%, transparent 100%);
+      border-radius: 50% 50% 40% 40%;
+    }
+    .flame.candle-flicker { animation-delay: .5s; }
+    .flame.candle-flicker:nth-child(3) { animation-delay: 1.2s; }
+  </style>
+</head>
+<body class="bg-charcoal text-offwhite">
+
+<div id="preloader">
+  <p class="preloader-logo">Reserve</p>
+  <p class="preloader-sub">Flicks &amp; Licks</p>
+  <div class="preloader-bar"></div>
+</div>
+<div id="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 2C15 2 9 8.5 9 14.5C9 17.8 11.7 20.5 15 20.5C18.3 20.5 21 17.8 21 14.5C21 8.5 15 2 15 2Z" fill="#C9A84C"/><line x1="15" y1="20.5" x2="15" y2="29" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="24" x2="18" y2="24" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity=".5"/></svg>
+      <span class="font-playfair text-xl tracking-wide text-gold">Flicks <span class="text-offwhite">&amp;</span> Licks</span>
+    </a>
+    <ul class="hidden lg:flex items-center gap-9">
+      <li><a href="index.html"        class="nav-link">Home</a></li>
+      <li><a href="menu.html"         class="nav-link">Menu</a></li>
+      <li><a href="about.html"        class="nav-link">About</a></li>
+      <li><a href="gallery.html"      class="nav-link">Gallery</a></li>
+      <li><a href="reservations.html" class="nav-link">Reservations</a></li>
+      <li><a href="contact.html"      class="nav-link">Contact</a></li>
+    </ul>
+    <a href="reservations.html" class="btn-secondary hidden lg:inline-flex py-3 px-6 text-xs"><span>Reserve a Table</span></a>
+    <button id="hamburger" class="lg:hidden flex flex-col gap-[5px] p-2 z-[1001]" aria-label="Menu">
+      <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+    </button>
+  </div>
+</nav>
+<div id="mobile-menu">
+  <div class="flex flex-col items-center gap-6">
+    <a href="index.html"        class="mobile-nav-link">Home</a>
+    <a href="menu.html"         class="mobile-nav-link">Menu</a>
+    <a href="about.html"        class="mobile-nav-link">About</a>
+    <a href="gallery.html"      class="mobile-nav-link">Gallery</a>
+    <a href="reservations.html" class="mobile-nav-link">Reservations</a>
+    <a href="contact.html"      class="mobile-nav-link">Contact</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO BANNER — CANDLE FLICKER
+═══════════════════════════════════════════ -->
+<section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-32 pb-20"
+         style="background: radial-gradient(ellipse at 50% 40%, #1A0E05 0%, #0D0D0D 70%)">
+
+  <!-- Atmospheric glow spots -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-72 h-72 rounded-full opacity-[0.06]" style="background: radial-gradient(circle, #C9A84C, transparent)"></div>
+    <div class="absolute top-1/3 right-1/4 w-56 h-56 rounded-full opacity-[0.04]" style="background: radial-gradient(circle, #C0392B, transparent)"></div>
+  </div>
+
+  <!-- Candle decorations -->
+  <div class="candle-container hidden md:flex">
+    <div class="candle">
+      <div class="flame candle-flicker"></div>
+      <div class="candle-body"></div>
+    </div>
+    <div class="candle" style="opacity:.8">
+      <div class="flame candle-flicker" style="animation-delay:.8s"></div>
+      <div class="candle-body" style="height:32px;"></div>
+    </div>
+    <div class="candle">
+      <div class="flame candle-flicker" style="animation-delay:1.5s"></div>
+      <div class="candle-body" style="height:60px;"></div>
+    </div>
+  </div>
+  <div class="candle-container hidden md:flex" style="left:8%; right:auto;">
+    <div class="candle" style="opacity:.7">
+      <div class="flame candle-flicker" style="animation-delay:.3s"></div>
+      <div class="candle-body" style="height:40px;"></div>
+    </div>
+    <div class="candle">
+      <div class="flame candle-flicker" style="animation-delay:1s"></div>
+      <div class="candle-body"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 text-center px-6 max-w-2xl mx-auto reveal">
+    <p class="section-label mb-5">Your Table Awaits</p>
+    <h1 class="font-playfair text-5xl md:text-7xl text-offwhite leading-tight mb-5">
+      Reserve Your<br/><em class="text-gold">Experience</em>
+    </h1>
+    <div class="gold-divider"></div>
+    <p class="font-cormorant text-xl text-warmgrey italic mt-5">
+      Limited covers available each evening. We recommend booking at least 2 weeks in advance for weekend dining.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RESERVATION FORM
+═══════════════════════════════════════════ -->
+<section class="py-16 lg:py-24" style="background: linear-gradient(to bottom, #0D0D0D, #100C02, #0D0D0D)">
+  <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+    <form id="reservation-form" class="space-y-6 reveal">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Full Name -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Full Name *</label>
+          <input type="text" name="name" placeholder="Your full name" required class="form-input" />
+          <p class="field-error"></p>
+        </div>
+        <!-- Email -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Email Address *</label>
+          <input type="email" name="email" placeholder="your@email.com" required class="form-input" />
+          <p class="field-error"></p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Phone -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Phone Number *</label>
+          <input type="tel" name="phone" placeholder="+44 7700 000000" required class="form-input" />
+          <p class="field-error"></p>
+        </div>
+        <!-- Guests -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Number of Guests *</label>
+          <select name="guests" required class="form-input">
+            <option value="" disabled selected>Select guests</option>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="7-10">7 – 10 Guests (Private)</option>
+            <option value="10+">10+ Guests (Event)</option>
+          </select>
+          <p class="field-error"></p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Date -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Preferred Date *</label>
+          <input type="date" name="date" required class="form-input" />
+          <p class="field-error"></p>
+        </div>
+        <!-- Time -->
+        <div>
+          <label class="section-label text-[10px] block mb-2">Preferred Time *</label>
+          <select name="time" required class="form-input">
+            <option value="" disabled selected>Select a time</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="17:30">5:30 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="18:30">6:30 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="19:30">7:30 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="20:30">8:30 PM</option>
+            <option value="21:00">9:00 PM</option>
+            <option value="21:30">9:30 PM</option>
+            <option value="22:00">10:00 PM</option>
+          </select>
+          <p class="field-error"></p>
+        </div>
+      </div>
+
+      <!-- Special Requests -->
+      <div>
+        <label class="section-label text-[10px] block mb-2">Special Requests</label>
+        <textarea name="requests" rows="4" placeholder="Dietary requirements, celebrations, special arrangements..." class="form-input"></textarea>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-4">
+        <button type="submit" class="btn-secondary w-full py-4 text-sm relative">
+          <span>Confirm Reservation</span>
+        </button>
+      </div>
+
+      <!-- Success Message -->
+      <div class="success-message items-center gap-4 p-6 border border-gold/30" style="background: rgba(201,168,76,0.06);">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#C9A84C"/><path d="M10 16L14 20L22 12" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <h4 class="font-playfair text-lg text-gold">Reservation Confirmed!</h4>
+          <p class="text-warmgrey text-sm mt-1">Thank you. We'll send a confirmation to your email shortly. We look forward to welcoming you.</p>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     INFO CARDS
+═══════════════════════════════════════════ -->
+<section class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
+
+      <!-- Hours -->
+      <div class="stagger-item text-center p-8" style="background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15);">
+        <div class="flex justify-center mb-5">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#C9A84C" stroke-width="1"/>
+            <path d="M20 10V20L26 24" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="font-playfair text-xl text-offwhite mb-4">Opening Hours</h3>
+        <div class="space-y-2 text-sm text-warmgrey">
+          <p class="flex justify-between"><span>Mon — Thu</span><span class="text-offwhite">5pm — 11pm</span></p>
+          <p class="flex justify-between"><span>Fri — Sat</span><span class="text-offwhite">5pm — 1am</span></p>
+          <p class="flex justify-between"><span>Sunday</span><span class="text-offwhite">4pm — 10pm</span></p>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="stagger-item text-center p-8" style="background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15);">
+        <div class="flex justify-center mb-5">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 4C15.03 4 11 8.03 11 13C11 21 20 36 20 36C20 36 29 21 29 13C29 8.03 24.97 4 20 4Z" stroke="#C9A84C" stroke-width="1"/>
+            <circle cx="20" cy="13" r="3" stroke="#C9A84C" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3 class="font-playfair text-xl text-offwhite mb-4">Location</h3>
+        <div class="text-sm text-warmgrey space-y-1">
+          <p class="text-offwhite">12 Cinematic Square</p>
+          <p>Soho, London</p>
+          <p>W1D 3AQ</p>
+          <p class="mt-3"><a href="https://maps.google.com" target="_blank" class="text-gold hover:underline text-xs tracking-widest uppercase">Get Directions →</a></p>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="stagger-item text-center p-8" style="background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15);">
+        <div class="flex justify-center mb-5">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M8 10C8 9 8.9 8 10 8H16L18 14L15 17C16.5 20 20 23.5 23 25L26 22L32 24V30C32 31.1 31.1 32 30 32C17.9 32 8 22.1 8 10Z" stroke="#C9A84C" stroke-width="1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="font-playfair text-xl text-offwhite mb-4">Contact</h3>
+        <div class="text-sm text-warmgrey space-y-2">
+          <p><a href="tel:+442012345678" class="text-offwhite hover:text-gold transition-colors">+44 20 1234 5678</a></p>
+          <p><a href="mailto:hello@flicksandlicks.co.uk" class="hover:text-gold transition-colors">hello@flicksandlicks.co.uk</a></p>
+          <p class="mt-3 text-xs">For groups of 7+, please contact us directly to arrange a private dining experience.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-charcoal border-t border-gold/15 pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-14 border-b border-gold/10">
+      <div class="space-y-5">
+        <div class="flex items-center gap-3">
+          <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><path d="M15 2C15 2 9 8.5 9 14.5C9 17.8 11.7 20.5 15 20.5C18.3 20.5 21 17.8 21 14.5C21 8.5 15 2 15 2Z" fill="#C9A84C"/><line x1="15" y1="20.5" x2="15" y2="29" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="font-playfair text-lg text-gold">Flicks &amp; Licks</span>
+        </div>
+        <p class="font-cormorant text-lg italic text-warmgrey leading-relaxed">Where every bite tells a story and every visit becomes a memory.</p>
+        <div class="footer-social flex gap-3">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9a8.18 8.18 0 0 0 4.79 1.53V7.08a4.85 4.85 0 0 1-1.02-.39z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="space-y-5">
+        <h4 class="section-label">Quick Links</h4>
+        <ul class="space-y-2.5">
+          <li><a href="index.html"        class="text-warmgrey hover:text-offwhite transition-colors text-sm">Home</a></li>
+          <li><a href="menu.html"         class="text-warmgrey hover:text-offwhite transition-colors text-sm">Menu</a></li>
+          <li><a href="about.html"        class="text-warmgrey hover:text-offwhite transition-colors text-sm">About Us</a></li>
+          <li><a href="gallery.html"      class="text-warmgrey hover:text-offwhite transition-colors text-sm">Gallery</a></li>
+          <li><a href="reservations.html" class="text-warmgrey hover:text-offwhite transition-colors text-sm">Reservations</a></li>
+          <li><a href="contact.html"      class="text-warmgrey hover:text-offwhite transition-colors text-sm">Contact</a></li>
+        </ul>
+      </div>
+      <div class="space-y-5">
+        <h4 class="section-label">Opening Hours</h4>
+        <ul class="space-y-3 text-sm">
+          <li class="flex justify-between text-warmgrey"><span>Mon — Thu</span><span class="text-offwhite">5pm — 11pm</span></li>
+          <li class="flex justify-between text-warmgrey"><span>Fri — Sat</span><span class="text-offwhite">5pm — 1am</span></li>
+          <li class="flex justify-between text-warmgrey"><span>Sunday</span><span class="text-offwhite">4pm — 10pm</span></li>
+        </ul>
+      </div>
+      <div class="space-y-5">
+        <h4 class="section-label">Newsletter</h4>
+        <p class="text-warmgrey text-sm">Get exclusive offers &amp; seasonal menus.</p>
+        <form class="flex gap-2" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="Your email" class="form-input flex-1 text-sm py-3 px-4" />
+          <button type="submit" class="btn-secondary px-4 py-3 text-xs flex-shrink-0"><span>→</span></button>
+        </form>
+      </div>
+    </div>
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-warmgrey text-xs">
+      <p>© 2025 Flicks &amp; Licks. All rights reserved.</p>
+      <p>12 Cinematic Square, Soho, London W1D 3AQ</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
