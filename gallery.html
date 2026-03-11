@@ -13,7 +13,15 @@
   <script>
     tailwind.config = {
       theme: { extend: {
-        colors: { charcoal:'#0D0D0D', espresso:'#1A1208', gold:'#C9A84C', cream:'#F5EDD6', offwhite:'#F0EBE1', warmgrey:'#8A8070', ember:'#C0392B' },
+        colors: {
+          charcoal: 'rgb(var(--color-charcoal) / <alpha-value>)',
+          espresso: 'rgb(var(--color-espresso) / <alpha-value>)',
+          gold:     'rgb(var(--color-gold) / <alpha-value>)',
+          cream:    'rgb(var(--color-cream) / <alpha-value>)',
+          offwhite: 'rgb(var(--color-offwhite) / <alpha-value>)',
+          warmgrey: 'rgb(var(--color-warmgrey) / <alpha-value>)',
+          ember:    'rgb(var(--color-ember) / <alpha-value>)',
+        },
         fontFamily: { playfair:['"Playfair Display"','serif'], cormorant:['"Cormorant Garamond"','serif'], dm:['"DM Sans"','sans-serif'] }
       }}
     }
@@ -88,6 +96,14 @@
       <li><a href="contact.html"      class="nav-link">Contact</a></li>
     </ul>
     <a href="reservations.html" class="btn-secondary hidden lg:inline-flex py-3 px-6 text-xs"><span>Reserve a Table</span></a>
+
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <!-- Moon (shown in dark mode) -->
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <!-- Sun (shown in light mode) -->
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+
     <button id="hamburger" class="lg:hidden flex flex-col gap-[5px] p-2 z-[1001]" aria-label="Menu">
       <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
     </button>
@@ -110,7 +126,7 @@
 <section class="relative h-[45vh] min-h-[340px] overflow-hidden flex items-end pb-16">
   <div class="parallax-container absolute inset-0">
     <img class="parallax-img w-full h-[130%] object-cover"
-         src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1400&auto=format&fit=crop&q=80"
+         src="assets/images/Multi fruit.jpg"
          alt="Gallery" />
   </div>
   <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,13,13,1) 15%, rgba(13,13,13,0.5) 60%, transparent)"></div>
@@ -147,82 +163,82 @@
 
       <!-- Food images -->
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80" alt="Seared Wagyu" loading="lazy"/>
+        <img src="assets/images/ampisi.jpg" alt="Seared Wagyu" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Seared A5 Wagyu</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="ambiance">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=80" alt="Restaurant interior" loading="lazy"/>
+        <img src="assets/images/gob3.jpg" alt="Restaurant interior" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">The Dining Room</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1476224203421-74177e22d543?w=600&auto=format&fit=crop&q=80" alt="Dessert" loading="lazy"/>
+        <img src="assets/images/omotuo.jpg" alt="Dessert" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Obsidian Lava Cake</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="behind">
-        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&auto=format&fit=crop&q=80" alt="Chef at work" loading="lazy"/>
+        <img src="assets/images/kenkey.jpg" alt="Chef at work" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Chef Isabelle at Work</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&auto=format&fit=crop&q=80" alt="Steak dish" loading="lazy"/>
+        <img src="assets/images/jollof.jpg" alt="Steak dish" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Côte de Boeuf</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="events">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80" alt="Private event" loading="lazy"/>
+        <img src="assets/images/Fried rice.jpg" alt="Private event" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Private Dining</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80" alt="Fine dining plate" loading="lazy"/>
+        <img src="assets/images/banku and okro.jpg" alt="Fine dining plate" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Tasting Course III</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="ambiance">
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&auto=format&fit=crop&q=80" alt="Bar area" loading="lazy"/>
+        <img src="assets/images/sobolo.jpg" alt="Bar area" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">The Bar</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=80" alt="Tart" loading="lazy"/>
+        <img src="assets/images/palm wine.jpg" alt="Tart" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Tarte Tatin</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="behind">
-        <img src="https://images.unsplash.com/photo-1581299894007-8e8eff886ef5?w=600&auto=format&fit=crop&q=80" alt="Kitchen" loading="lazy"/>
+        <img src="assets/images/Multi fruit.jpg" alt="Kitchen" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">The Kitchen</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&auto=format&fit=crop&q=80" alt="Fresh ingredients" loading="lazy"/>
+        <img src="assets/images/ampisi.jpg" alt="Fresh ingredients" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Seasonal Produce</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="events">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&auto=format&fit=crop&q=80" alt="Event table" loading="lazy"/>
+        <img src="assets/images/gob3.jpg" alt="Event table" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Table Setting</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="ambiance">
-        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=600&auto=format&fit=crop&q=80" alt="Ambiance" loading="lazy"/>
+        <img src="assets/images/omotuo.jpg" alt="Ambiance" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Evening Ambiance</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&auto=format&fit=crop&q=80" alt="Chocolate dessert" loading="lazy"/>
+        <img src="assets/images/kenkey.jpg" alt="Chocolate dessert" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Petit Fours</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="behind">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80" alt="Team" loading="lazy"/>
+        <img src="assets/images/jollof.jpg" alt="Team" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Our Team</p></div>
       </div>
 
       <div class="masonry-item gallery-item" data-category="food">
-        <img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=600&auto=format&fit=crop&q=80" alt="Fine dining" loading="lazy"/>
+        <img src="assets/images/Fried rice.jpg" alt="Fine dining" loading="lazy"/>
         <div class="gallery-overlay"><p class="font-playfair text-offwhite text-lg">Tasting Menu Course</p></div>
       </div>
 

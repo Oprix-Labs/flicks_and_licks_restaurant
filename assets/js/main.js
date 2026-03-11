@@ -133,6 +133,29 @@ function setActiveNav() {
   });
 }
 
+/* ── THEME TOGGLE ────────────────────────────────────────── */
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  const root = document.documentElement;
+
+  // Restore saved preference
+  const saved = localStorage.getItem('fl-theme');
+  if (saved === 'light') root.setAttribute('data-theme', 'light');
+
+  btn.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      root.removeAttribute('data-theme');
+      localStorage.setItem('fl-theme', 'dark');
+    } else {
+      root.setAttribute('data-theme', 'light');
+      localStorage.setItem('fl-theme', 'light');
+    }
+  });
+}
+
 /* ── INIT ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
@@ -142,4 +165,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initCardTilt();
   setActiveNav();
+  initThemeToggle();
 });

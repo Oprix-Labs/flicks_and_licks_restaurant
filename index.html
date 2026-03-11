@@ -18,13 +18,13 @@
       theme: {
         extend: {
           colors: {
-            charcoal: '#0D0D0D',
-            espresso: '#1A1208',
-            gold:     '#C9A84C',
-            cream:    '#F5EDD6',
-            offwhite: '#F0EBE1',
-            warmgrey: '#8A8070',
-            ember:    '#C0392B',
+            charcoal: 'rgb(var(--color-charcoal) / <alpha-value>)',
+            espresso: 'rgb(var(--color-espresso) / <alpha-value>)',
+            gold:     'rgb(var(--color-gold) / <alpha-value>)',
+            cream:    'rgb(var(--color-cream) / <alpha-value>)',
+            offwhite: 'rgb(var(--color-offwhite) / <alpha-value>)',
+            warmgrey: 'rgb(var(--color-warmgrey) / <alpha-value>)',
+            ember:    'rgb(var(--color-ember) / <alpha-value>)',
           },
           fontFamily: {
             playfair:  ['"Playfair Display"', 'serif'],
@@ -73,6 +73,13 @@
     </ul>
 
     <a href="reservations.html" class="btn-secondary hidden lg:inline-flex py-3 px-6 text-xs"><span>Reserve a Table</span></a>
+
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <!-- Moon (shown in dark mode) -->
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <!-- Sun (shown in light mode) -->
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
 
     <button id="hamburger" class="lg:hidden flex flex-col gap-[5px] p-2 z-[1001]" aria-label="Menu">
       <span class="hamburger-line"></span>
@@ -142,7 +149,7 @@
       <div class="parallax-container relative overflow-hidden aspect-[4/5] reveal">
         <img
           class="parallax-img w-full h-[120%] object-cover"
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&auto=format&fit=crop&q=80"
+          src="assets/images/jollof.jpg"
           alt="Flicks and Licks restaurant interior"
           loading="lazy"
         />
@@ -220,7 +227,7 @@
       <!-- Dish 1 -->
       <div class="tilt-card reveal" style="background: #111108; border: 1px solid rgba(201,168,76,0.1);">
         <div class="overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80"
+          <img src="assets/images/ampisi.jpg"
                alt="Seared Wagyu" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy"/>
         </div>
         <div class="p-6 space-y-3">
@@ -228,8 +235,8 @@
             <span class="text-xs text-gold">★</span>
             <span class="section-label text-[10px]">Chef's Pick</span>
           </div>
-          <h3 class="font-playfair text-xl text-offwhite">Seared A5 Wagyu</h3>
-          <p class="text-warmgrey text-sm leading-relaxed">48-hour dry-aged, truffle butter glaze, shaved black truffle, micro greens &amp; bone marrow jus.</p>
+          <h3 class="font-playfair text-xl text-offwhite">Abenkwan Royal</h3>
+          <p class="text-warmgrey text-sm leading-relaxed">Stone-ground palm nuts, free-range guinea fowl, smoked herrings, garden eggs &amp; hand-rolled fufu balls.</p>
           <div class="pt-2 border-t border-gold/10">
             <a href="menu.html" class="text-xs text-warmgrey hover:text-gold transition-colors uppercase tracking-widest">View More →</a>
           </div>
@@ -239,16 +246,16 @@
       <!-- Dish 2 -->
       <div class="tilt-card reveal" style="background: #111108; border: 1px solid rgba(201,168,76,0.1);">
         <div class="overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1476224203421-74177e22d543?w=600&auto=format&fit=crop&q=80"
+          <img src="assets/images/banku and okro.jpg"
                alt="Truffle Risotto" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy"/>
         </div>
         <div class="p-6 space-y-3">
           <div class="flex items-center gap-2">
             <span class="text-xs text-green-400">🌿</span>
-            <span class="section-label text-[10px]">Vegetarian</span>
+            <span class="section-label text-[10px]">Plant-Based</span>
           </div>
-          <h3 class="font-playfair text-xl text-offwhite">Black Truffle Risotto</h3>
-          <p class="text-warmgrey text-sm leading-relaxed">Carnaroli rice, aged Parmigiano, 24k gold leaf finish, Périgord truffle shavings &amp; champagne foam.</p>
+          <h3 class="font-playfair text-xl text-offwhite">Banku &amp; Okro Stew</h3>
+          <p class="text-warmgrey text-sm leading-relaxed">Fermented corn &amp; cassava dough, slow-cooked okro draw soup, mud crab, smoked catfish &amp; dawadawa.</p>
           <div class="pt-2 border-t border-gold/10">
             <a href="menu.html" class="text-xs text-warmgrey hover:text-gold transition-colors uppercase tracking-widest">View More →</a>
           </div>
@@ -258,16 +265,16 @@
       <!-- Dish 3 -->
       <div class="tilt-card reveal" style="background: #111108; border: 1px solid rgba(201,168,76,0.1);">
         <div class="overflow-hidden aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&auto=format&fit=crop&q=80"
+          <img src="assets/images/omotuo.jpg"
                alt="Chocolate Lava" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy"/>
         </div>
         <div class="p-6 space-y-3">
           <div class="flex items-center gap-2">
             <span class="text-xs text-gold">✦</span>
-            <span class="section-label text-[10px]">Signature Dessert</span>
+            <span class="section-label text-[10px]">Signature Dish</span>
           </div>
-          <h3 class="font-playfair text-xl text-offwhite">Obsidian Lava Cake</h3>
-          <p class="text-warmgrey text-sm leading-relaxed">Valrhona 85% dark chocolate, salted caramel core, smoked vanilla bean ice cream &amp; edible gold dust.</p>
+          <h3 class="font-playfair text-xl text-offwhite">Omotuo &amp; Nkate Nkwan</h3>
+          <p class="text-warmgrey text-sm leading-relaxed">Silken hand-rolled rice balls, 4-hour groundnut soup, palm oil, local spices &amp; smoked herrings.</p>
           <div class="pt-2 border-t border-gold/10">
             <a href="menu.html" class="text-xs text-warmgrey hover:text-gold transition-colors uppercase tracking-widest">View More →</a>
           </div>

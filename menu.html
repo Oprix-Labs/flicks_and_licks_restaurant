@@ -13,7 +13,15 @@
   <script>
     tailwind.config = {
       theme: { extend: {
-        colors: { charcoal:'#0D0D0D', espresso:'#1A1208', gold:'#C9A84C', cream:'#F5EDD6', offwhite:'#F0EBE1', warmgrey:'#8A8070', ember:'#C0392B' },
+        colors: {
+          charcoal: 'rgb(var(--color-charcoal) / <alpha-value>)',
+          espresso: 'rgb(var(--color-espresso) / <alpha-value>)',
+          gold:     'rgb(var(--color-gold) / <alpha-value>)',
+          cream:    'rgb(var(--color-cream) / <alpha-value>)',
+          offwhite: 'rgb(var(--color-offwhite) / <alpha-value>)',
+          warmgrey: 'rgb(var(--color-warmgrey) / <alpha-value>)',
+          ember:    'rgb(var(--color-ember) / <alpha-value>)',
+        },
         fontFamily: { playfair:['"Playfair Display"','serif'], cormorant:['"Cormorant Garamond"','serif'], dm:['"DM Sans"','sans-serif'] }
       }}
     }
@@ -45,6 +53,14 @@
       <li><a href="contact.html"      class="nav-link">Contact</a></li>
     </ul>
     <a href="reservations.html" class="btn-secondary hidden lg:inline-flex py-3 px-6 text-xs"><span>Reserve a Table</span></a>
+
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <!-- Moon (shown in dark mode) -->
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <!-- Sun (shown in light mode) -->
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+
     <button id="hamburger" class="lg:hidden flex flex-col gap-[5px] p-2 z-[1001]" aria-label="Menu">
       <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
     </button>
@@ -67,7 +83,7 @@
 <section class="relative h-[55vh] min-h-[420px] overflow-hidden flex items-end pb-16">
   <div class="parallax-container absolute inset-0">
     <img class="parallax-img w-full h-[130%] object-cover"
-         src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&auto=format&fit=crop&q=80"
+         src="assets/images/gob3.jpg"
          alt="Our Menu" />
   </div>
   <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,13,13,1) 15%, rgba(13,13,13,0.6) 60%, transparent)"></div>
@@ -105,208 +121,328 @@
     <!-- STARTERS -->
     <div class="menu-section grid grid-cols-1 md:grid-cols-2 gap-5" data-section="starters">
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Oscietra Caviar</h3>
-          <span class="font-playfair text-xl text-gold">GH₵48</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Abenkwan Amuse-Bouche</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵48</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Concentrated stone-ground palm nut essence, served in a calabash with crispy kokonte chips &amp; smoked herrings.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">30g Oscietra caviar, blinis, crème fraîche, chives &amp; lemon.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/ampisi.jpg" alt="Oscietra Caviar" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Burrata &amp; Heirloom Tomato</h3>
-          <span class="font-playfair text-xl text-gold">GH₵18</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Kelewele &amp; Groundnut Cream</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵18</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Stone-spiced ripe plantain bites, caramelised edges, roasted groundnut cream &amp; house-made shito drizzle.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Pugliese burrata, heritage tomatoes, aged balsamic, basil oil &amp; fleur de sel.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/jollof.jpg" alt="Burrata &amp; Heirloom Tomato" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Seared Foie Gras</h3>
-          <span class="font-playfair text-xl text-gold">GH₵32</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Tilapia Tartare</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵32</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Fresh Volta River tilapia, citrus cure, shito vinaigrette, diced onion, tomato &amp; kenkey croutons.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Pan-seared duck foie gras, brioche toast, fig &amp; port gel, micro greens.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/kenkey.jpg" alt="Seared Foie Gras" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Tuna Tartare</h3>
-          <span class="font-playfair text-xl text-gold">GH₵26</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Kontomire Velouté</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵26</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Velvety cocoyam leaf soup, smoked herrings, garden eggs, palm oil &amp; roasted egusi garnish.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Yellowfin tuna, avocado mousse, sesame, yuzu dressing &amp; toasted sesame crackers.</p>
-        <div class="flex gap-2"><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/gob3.jpg" alt="Tuna Tartare" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Wild Mushroom Velouté</h3>
-          <span class="font-playfair text-xl text-gold">GH₵16</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Agushie Bisque</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵16</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Toasted melon seeds, crayfish stock, smoked catfish, calabash nutmeg &amp; crispy yam chips.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Seasonal wild mushrooms, cream, thyme foam, truffle oil &amp; sourdough crisp.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/banku and okro.jpg" alt="Wild Mushroom Velouté" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Lobster Bisque</h3>
-          <span class="font-playfair text-xl text-gold">GH₵28</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Light Soup Shooter</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵28</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Aromatic tomato &amp; pepper nkrakra consommé, fresh tilapia tartar, garden herb oil &amp; citrus zest.</p>
+          <div class="flex gap-2"><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Rich Maine lobster bisque, brandy cream, lobster claw medallion, chive oil.</p>
-        <div class="flex gap-2"><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/omotuo.jpg" alt="Lobster Bisque" loading="lazy" />
+        </div>
       </div>
     </div>
 
     <!-- MAINS -->
     <div class="menu-section grid-cols-1 md:grid-cols-2 gap-5" data-section="mains" style="display:none">
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Seared A5 Wagyu</h3>
-          <span class="font-playfair text-xl text-gold">GH₵68</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Abenkwan Supreme</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵68</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">4-hour stone-ground palm nut soup, whole guinea fowl, smoked herrings, garden eggs &amp; hand-rolled fufu.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">48h dry-aged, truffle butter, shaved black truffle, micro greens &amp; bone marrow jus.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/ampisi.jpg" alt="Seared A5 Wagyu" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Rack of Lamb</h3>
-          <span class="font-playfair text-xl text-gold">GH₵52</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Jollof Rice Royale</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵52</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Slow-smoked party jollof, grilled whole tilapia, fried ripe plantain, coleslaw &amp; house shito.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Herb-crusted Welsh lamb, fondant potato, asparagus, red wine &amp; rosemary jus.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/Fried rice.jpg" alt="Rack of Lamb" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Pan Roast Sea Bass</h3>
-          <span class="font-playfair text-xl text-gold">GH₵44</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Banku &amp; Okro Supreme</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵44</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Fermented corn &amp; cassava banku, rich okro draw soup, fresh crab, prawns &amp; smoked catfish.</p>
+          <div class="flex gap-2"><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Cornish sea bass, saffron beurre blanc, fennel confit, samphire &amp; lemon caviar.</p>
-        <div class="flex gap-2"><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/jollof.jpg" alt="Pan Roast Sea Bass" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Black Truffle Risotto</h3>
-          <span class="font-playfair text-xl text-gold">GH₵42</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Waakye Grand</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵42</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Rice &amp; black-eyed beans, wele, spaghetti, boiled egg, shito, fresh tomato stew &amp; fried plantain.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Carnaroli rice, aged Parmigiano, 24k gold leaf, Périgord truffle &amp; champagne foam.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/banku and okro.jpg" alt="Black Truffle Risotto" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Duck à l'Orange</h3>
-          <span class="font-playfair text-xl text-gold">GH₵48</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Kenkey &amp; Grilled Tilapia</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵48</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Fermented corn kenkey, whole charcoal-grilled Volta River tilapia, fresh pepper sauce &amp; avocado.</p>
+          <div class="flex gap-2"></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Crispy confit duck leg, bitter orange sauce, braised red cabbage &amp; dauphinoise.</p>
-        <div class="flex gap-2"></div>
+        <div class="menu-item-img">
+          <img src="assets/images/kenkey.jpg" alt="Duck à l'Orange" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Butter-Poached Lobster</h3>
-          <span class="font-playfair text-xl text-gold">GH₵72</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Kontomire Stew &amp; Boiled Yam</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵72</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Slow-cooked cocoyam leaf stew, golden boiled yam, smoked herrings, palava sauce &amp; palm oil.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Whole native lobster, tarragon butter, hand-rolled pasta, chervil &amp; lobster bisque.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span><span class="text-xs border border-blue-400/40 text-blue-300 px-2 py-0.5">🐟 Seafood</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/gob3.jpg" alt="Butter-Poached Lobster" loading="lazy" />
+        </div>
       </div>
     </div>
 
     <!-- DESSERTS -->
     <div class="menu-section grid-cols-1 md:grid-cols-2 gap-5" data-section="desserts" style="display:none">
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Obsidian Lava Cake</h3>
-          <span class="font-playfair text-xl text-gold">GH₵24</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Tatale Stack</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵24</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Sweet ripe plantain pancakes, groundnut caramel drizzle, coconut cream &amp; local vanilla ice cream.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Valrhona 85% dark chocolate, salted caramel core, smoked vanilla ice cream &amp; edible gold.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/omotuo.jpg" alt="Obsidian Lava Cake" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Crème Brûlée</h3>
-          <span class="font-playfair text-xl text-gold">GH₵16</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Bofrot Brûlée</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵16</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Ghanaian fried dough custard, caramelised local honey crust, seasonal fruit compote.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Madagascan vanilla custard, caramelised sugar crust, seasonal berry compote.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/ampisi.jpg" alt="Crème Brûlée" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Tarte Tatin</h3>
-          <span class="font-playfair text-xl text-gold">GH₵18</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Puff Puff &amp; Caramel</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵18</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Spiced Ghanaian puff puff, salted groundnut caramel, coconut cream &amp; fresh mango coulis.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Caramelised Cox apple tart, calvados cream, candied walnut &amp; cinnamon tuile.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/Fried rice.jpg" alt="Tarte Tatin" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Mango &amp; Passion Fruit Pavlova</h3>
-          <span class="font-playfair text-xl text-gold">GH₵20</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Mango &amp; Sobolo Pavlova</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵20</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Crisp meringue, hibiscus-infused curd, chantilly cream, fresh Ghanaian mango &amp; sobolo reduction.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Crisp meringue, tropical curd, chantilly cream, passionfruit &amp; mango coulis.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/jollof.jpg" alt="Mango &amp; Passion Fruit Pavlova" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Cheese &amp; Charcuterie</h3>
-          <span class="font-playfair text-xl text-gold">GH₵28</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Coconut Candy Selection</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵28</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Toasted coconut candy, nkate cake bites, chin chin, roasted groundnut clusters &amp; dried mango.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Five artisan cheeses, seasonal charcuterie, quince paste, sourdough crackers &amp; grapes.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Chef's Pick</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/banku and okro.jpg" alt="Cheese &amp; Charcuterie" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Petit Fours Selection</h3>
-          <span class="font-playfair text-xl text-gold">GH₵12</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Tropical Petit Fours</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵12</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Nkate cake morsels, coconut toffee, spiced chin chin, dried pineapple &amp; local honey bites.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Five handmade chocolates, macarons, candied citrus &amp; miniature financiers.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Vegetarian</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/kenkey.jpg" alt="Petit Fours Selection" loading="lazy" />
+        </div>
       </div>
     </div>
 
     <!-- DRINKS -->
     <div class="menu-section grid-cols-1 md:grid-cols-2 gap-5" data-section="drinks" style="display:none">
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Burnt Noir Negroni</h3>
-          <span class="font-playfair text-xl text-gold">GH₵18</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Sobolo Noir</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵18</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Artisan hibiscus infusion, fresh ginger, lemon balm, local honey reduction &amp; charred citrus peel.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature Cocktail</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Smoked Campari, gin, sweet vermouth, charred orange peel.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature Cocktail</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/sobolo.jpg" alt="Burnt Noir Negroni" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Gold Rush Old Fashioned</h3>
-          <span class="font-playfair text-xl text-gold">GH₵20</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Palm Wine Old Fashioned</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵20</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Naturally fermented Ghanaian palm wine, local honey syrup, aromatic bitters &amp; 24k gold garnish.</p>
+          <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature Cocktail</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Aged bourbon, honey syrup, Angostura bitters, gold-leaf garnish.</p>
-        <div class="flex gap-2"><span class="text-xs border border-gold/30 text-gold px-2 py-0.5">★ Signature Cocktail</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/palm wine.jpg" alt="Gold Rush Old Fashioned" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Dom Pérignon 2015</h3>
-          <span class="font-playfair text-xl text-gold">GH₵320</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Asaana Reserve</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵320</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Bottle. Aged fermented corn juice, naturally velvety, lightly sweetened with Ghanaian cane sugar.</p>
+          <div class="flex gap-2"></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Bottle. Champagne, France. Notes of toasted brioche, honey &amp; citrus blossom.</p>
-        <div class="flex gap-2"></div>
+        <div class="menu-item-img">
+          <img src="assets/images/Multi fruit.jpg" alt="Dom Pérignon 2015" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Château Pétrus 2018</h3>
-          <span class="font-playfair text-xl text-gold">GH₵1,200</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Aged Sobolo Reserve</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵1,200</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Bottle. 12-month cold-steeped sorrel petals, roselle, ginger, cloves &amp; Ghanaian spice blend.</p>
+          <div class="flex gap-2"></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Bottle. Pomerol, Bordeaux. Plum, black cherry, graphite, iron minerality.</p>
-        <div class="flex gap-2"></div>
+        <div class="menu-item-img">
+          <img src="assets/images/sobolo.jpg" alt="Château Pétrus 2018" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Ember Mule</h3>
-          <span class="font-playfair text-xl text-gold">GH₵16</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Spiced Palm Mule</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵16</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Fresh palm wine, house-made ginger syrup, lime, cayenne &amp; cucumber.</p>
+          <div class="flex gap-2"><span class="text-xs border border-orange-400/40 text-orange-300 px-2 py-0.5">🌶 Spicy</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Premium vodka, house-made ginger beer, lime, cayenne &amp; cucumber.</p>
-        <div class="flex gap-2"><span class="text-xs border border-orange-400/40 text-orange-300 px-2 py-0.5">🌶 Spicy</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/palm wine.jpg" alt="Ember Mule" loading="lazy" />
+        </div>
       </div>
       <div class="menu-item-card">
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="font-playfair text-lg text-offwhite">Midnight Garden (Mocktail)</h3>
-          <span class="font-playfair text-xl text-gold">GH₵12</span>
+        <div class="menu-item-card-body">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-playfair text-lg text-offwhite">Midnight Sobolo (Mocktail)</h3>
+            <span class="font-playfair text-xl text-gold ml-2 flex-shrink-0">GH₵12</span>
+          </div>
+          <p class="text-warmgrey text-sm leading-relaxed mb-3">Hibiscus cold brew, fresh mint, lime, activated ginger &amp; sparkling water.</p>
+          <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Non-Alcoholic</span></div>
         </div>
-        <p class="text-warmgrey text-sm leading-relaxed mb-3">Elderflower, cucumber, activated charcoal, tonic &amp; fresh mint.</p>
-        <div class="flex gap-2"><span class="text-xs border border-green-500/40 text-green-400 px-2 py-0.5">🌿 Non-Alcoholic</span></div>
+        <div class="menu-item-img">
+          <img src="assets/images/Multi fruit.jpg" alt="Midnight Garden (Mocktail)" loading="lazy" />
+        </div>
       </div>
     </div>
 
@@ -323,22 +459,22 @@
         <div class="flip-card-inner h-full">
           <!-- Front -->
           <div class="flip-card-front overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&auto=format&fit=crop&q=80"
+            <img src="assets/images/jollof.jpg"
                  alt="Côte de Boeuf" class="w-full h-full object-cover" />
             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,13,13,0.9), transparent 60%)"></div>
             <div class="absolute bottom-8 left-8 right-8">
               <p class="section-label mb-2">Hover to Reveal · This Week's Special</p>
-              <h3 class="font-playfair text-3xl text-offwhite">Côte de Boeuf</h3>
+              <h3 class="font-playfair text-3xl text-offwhite">Omo Tuo &amp; Abenkwan</h3>
               <p class="font-cormorant text-xl text-gold italic mt-1">For Two · GH₵160</p>
             </div>
           </div>
           <!-- Back -->
           <div class="flip-card-back">
             <p class="section-label">This Week's Special</p>
-            <h3 class="font-playfair text-3xl text-gold text-center">Côte de Boeuf</h3>
+            <h3 class="font-playfair text-3xl text-gold text-center">Omo Tuo &amp; Abenkwan</h3>
             <div class="gold-divider"></div>
             <p class="font-cormorant text-lg text-offwhite italic text-center leading-relaxed max-w-md">
-              32-day dry-aged prime rib of Hereford beef, carved tableside. Served with truffle pomme purée, roasted bone marrow, béarnaise sauce &amp; glazed heritage carrots.
+              Our most celebrated sharing dish — silken hand-rolled rice balls paired with stone-ground 4-hour palm nut soup, whole guinea fowl, garden eggs, smoked herrings &amp; a trio of local Ghanaian spices.
             </p>
             <p class="font-playfair text-2xl text-gold mt-2">GH₵160 · For Two</p>
             <a href="reservations.html" class="btn-secondary mt-4 text-xs"><span>Reserve to Experience</span></a>
@@ -349,22 +485,37 @@
       <!-- More specials grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
         <div class="menu-item-card reveal">
-          <p class="section-label text-[10px] mb-2">Weekly Special</p>
-          <h3 class="font-playfair text-lg text-offwhite mb-1">Grilled Langoustines</h3>
-          <p class="text-warmgrey text-sm leading-relaxed mb-3">Scottish langoustines, garlic butter, lemon &amp; sourdough.</p>
-          <span class="font-playfair text-xl text-gold">GH₵54</span>
+          <div class="menu-item-card-body">
+            <p class="section-label text-[10px] mb-2">Weekly Special</p>
+            <h3 class="font-playfair text-lg text-offwhite mb-1">Grilled Volta Tilapia</h3>
+            <p class="text-warmgrey text-sm leading-relaxed mb-3">Fresh Volta River tilapia, shito butter, citrus &amp; traditional kenkey.</p>
+            <span class="font-playfair text-xl text-gold">GH₵54</span>
+          </div>
+          <div class="menu-item-img">
+            <img src="assets/images/ampisi.jpg" alt="Grilled Langoustines" loading="lazy" />
+          </div>
         </div>
         <div class="menu-item-card reveal">
-          <p class="section-label text-[10px] mb-2">Weekly Special</p>
-          <h3 class="font-playfair text-lg text-offwhite mb-1">White Asparagus</h3>
-          <p class="text-warmgrey text-sm leading-relaxed mb-3">Seasonal white asparagus, hollandaise, poached egg &amp; chervil.</p>
-          <span class="font-playfair text-xl text-gold">GH₵28</span>
+          <div class="menu-item-card-body">
+            <p class="section-label text-[10px] mb-2">Weekly Special</p>
+            <h3 class="font-playfair text-lg text-offwhite mb-1">Garden Egg Gratin</h3>
+            <p class="text-warmgrey text-sm leading-relaxed mb-3">Seasonal garden eggs, groundnut hollandaise, smoked herrings &amp; fresh herb oil.</p>
+            <span class="font-playfair text-xl text-gold">GH₵28</span>
+          </div>
+          <div class="menu-item-img">
+            <img src="assets/images/gob3.jpg" alt="White Asparagus" loading="lazy" />
+          </div>
         </div>
         <div class="menu-item-card reveal">
-          <p class="section-label text-[10px] mb-2">Weekly Special</p>
-          <h3 class="font-playfair text-lg text-offwhite mb-1">Tasting Menu</h3>
-          <p class="text-warmgrey text-sm leading-relaxed mb-3">Seven-course chef's tasting, optional wine pairing available.</p>
-          <span class="font-playfair text-xl text-gold">GH₵145 / GH₵220</span>
+          <div class="menu-item-card-body">
+            <p class="section-label text-[10px] mb-2">Weekly Special</p>
+            <h3 class="font-playfair text-lg text-offwhite mb-1">Signature Tasting Menu</h3>
+            <p class="text-warmgrey text-sm leading-relaxed mb-3">Seven-course journey through Ghanaian cuisine, optional sobolo &amp; palm wine pairing available.</p>
+            <span class="font-playfair text-xl text-gold">GH₵145 / GH₵220</span>
+          </div>
+          <div class="menu-item-img">
+            <img src="assets/images/omotuo.jpg" alt="Tasting Menu" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
