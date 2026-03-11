@@ -244,16 +244,48 @@
         </button>
       </div>
 
-      <!-- Success Message -->
-      <div class="success-message items-center gap-4 p-6 border border-gold/30" style="background: rgba(201,168,76,0.06);">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#C9A84C"/><path d="M10 16L14 20L22 12" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div>
-          <h4 class="font-playfair text-lg text-gold">Reservation Confirmed!</h4>
-          <p class="text-warmgrey text-sm mt-1">Thank you. We'll send a confirmation to your email shortly. We look forward to welcoming you.</p>
-        </div>
+    </form>
+
+    <!-- Thank You Message — shown only on successful submission -->
+    <div id="reservation-thankyou" class="success-message flex-col items-center text-center gap-6 mt-10 py-14 px-8 border border-gold/30" style="background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,18,8,0.6));">
+
+      <!-- Animated checkmark -->
+      <div class="relative flex items-center justify-center w-20 h-20">
+        <div class="absolute inset-0 rounded-full border border-gold/40 animate-ping opacity-30"></div>
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="28" stroke="#C9A84C" stroke-width="1"/>
+          <path d="M18 30L26 38L42 22" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
 
-    </form>
+      <!-- Heading -->
+      <div class="space-y-3">
+        <p class="section-label">Booking Received</p>
+        <h3 class="font-playfair text-3xl md:text-4xl text-offwhite">Thank You for<br/><em class="text-gold">Your Reservation</em></h3>
+        <div class="gold-divider"></div>
+      </div>
+
+      <!-- Body text -->
+      <div class="space-y-3 max-w-sm mx-auto">
+        <p class="font-cormorant text-xl text-warmgrey italic leading-relaxed">
+          Your table has been reserved. We look forward to welcoming you and making your evening truly unforgettable.
+        </p>
+        <p class="text-warmgrey text-sm leading-relaxed">
+          A confirmation will be sent to your email shortly. Should you need to make any changes, please don't hesitate to reach out.
+        </p>
+      </div>
+
+      <!-- Divider detail -->
+      <div class="flex items-center gap-4 text-gold/40 text-xs tracking-widest uppercase">
+        <div class="w-12 h-px bg-gold/20"></div>
+        <span>See You Soon</span>
+        <div class="w-12 h-px bg-gold/20"></div>
+      </div>
+
+      <!-- CTA back to home -->
+      <a href="index.html" class="btn-primary"><span>Return Home</span></a>
+
+    </div>
   </div>
 </section>
 

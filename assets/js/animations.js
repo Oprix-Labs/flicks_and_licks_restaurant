@@ -218,10 +218,15 @@ function validateField(input) {
 }
 
 function showSuccess(form) {
-  const el = form.querySelector('.success-message');
+  // Look for a sibling thank-you element first, then fall back to inside form
+  const el = document.getElementById('reservation-thankyou')
+          || document.getElementById('contact-thankyou')
+          || form.querySelector('.success-message');
   if (!el) return;
+  form.style.display = 'none';
   el.classList.add('show');
-  gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .5 });
+  gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function initFormValidation(formId) {

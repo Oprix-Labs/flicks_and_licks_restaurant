@@ -489,10 +489,11 @@ body::after {
 
 /* ── SUCCESS MESSAGE ─────────────────────────────────────── */
 .success-message {
-  display: none; opacity: 0; transform: translateY(20px);
-  transition: opacity .4s, transform .4s;
+  display: none; opacity: 0; transform: translateY(30px);
+  transition: opacity .5s, transform .5s;
 }
 .success-message.show { display: flex; opacity: 1; transform: translateY(0); }
+#reservation-thankyou.show { display: flex; }
 
 /* ── VALUE CARDS ─────────────────────────────────────────── */
 .value-card {
